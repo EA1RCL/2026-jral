@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JRAL 2026 – I Jornadas de Radio Amateur de Asturias en Lugones</title>
+  <meta name="description" content="I Jornadas de Radio Amateur de Asturias en Lugones. 29 de Agosto de 2026. Innovación, comunidad y radio del futuro. #JRAL2026" />
+  <meta property="og:title" content="JRAL 2026 – I Jornadas de Radio Amateur de Asturias" />
+  <meta property="og:description" content="29 de Agosto de 2026 · Lugones, Asturias · Innovación, comunidad y radio del futuro." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & variables ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0d1b3e;
+      --blue:   #1a3a7c;
+      --mid:    #1e4db7;
+      --accent: #e63946;
+      --gold:   #f4b942;
+      --light:  #f0f4ff;
+      --white:  #ffffff;
+      --gray:   #6b7280;
+      --border: #dde3f0;
+      --text:   #1a1f36;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(13,27,62,.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ─── Typography helpers ────────────────────────────────────── */
+    h1, h2, h3, h4 { line-height: 1.25; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    .container {
+      max-width: 1100px;
+      margin-inline: auto;
+      padding-inline: 1.5rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      background: #e8eeff;
+      border: 1px solid #c0ccf5;
+      border-radius: 6px;
+      padding: .25rem .75rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.25rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: .75rem;
+    }
+
+    .section-lead {
+      font-size: 1.05rem;
+      color: var(--gray);
+      max-width: 60ch;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── Navigation ────────────────────────────────────────────── */
+    #navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow .3s;
+    }
+
+    #navbar.scrolled { box-shadow: 0 2px 16px rgba(13,27,62,.1); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 1rem;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .nav-brand .callsign {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .9rem;
+      color: var(--accent);
+      background: #fff0f1;
+      border: 1px solid #fcc;
+      border-radius: 5px;
+      padding: .1rem .45rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: .25rem;
+    }
+
+    .nav-links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--gray);
+      padding: .4rem .7rem;
+      border-radius: 7px;
+      transition: background .2s, color .2s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: var(--light);
+      color: var(--navy);
+    }
+
+    .nav-cta {
+      background: var(--accent) !important;
+      color: var(--white) !important;
+      font-weight: 700 !important;
+      padding: .45rem 1rem !important;
+    }
+
+    .nav-cta:hover { background: #c62a36 !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: .5rem;
+      border: none;
+      background: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: .3s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ─── Hero ──────────────────────────────────────────────────── */
+    #hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #2851c4 100%);
+      color: var(--white);
+      padding: 5rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(100,140,255,.18) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: var(--gold);
+      background: rgba(244,185,66,.12);
+      border: 1px solid rgba(244,185,66,.35);
+      border-radius: 999px;
+      padding: .35rem 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(.8); }
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      letter-spacing: -.02em;
+    }
+
+    .hero-title span { color: var(--gold); }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,.75);
+      margin-bottom: 2rem;
+      max-width: 50ch;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-pill {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 999px;
+      padding: .5rem 1.1rem;
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    .hero-pill svg { opacity: .75; flex-shrink: 0; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-weight: 700;
+      font-size: .95rem;
+      border-radius: 9px;
+      padding: .75rem 1.5rem;
+      cursor: pointer;
+      transition: .2s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: #c62a36; transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,.4);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.7); }
+
+    /* Countdown */
+    .hero-countdown {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+      min-width: 260px;
+      flex-shrink: 0;
+    }
+
+    .countdown-label {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+      margin-bottom: 1rem;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .5rem;
+      margin-bottom: .75rem;
+    }
+
+    .countdown-unit {
+      background: rgba(0,0,0,.25);
+      border-radius: 8px;
+      padding: .6rem .25rem;
+    }
+
+    .countdown-num {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--gold);
+    }
+
+    .countdown-unit span:last-child {
+      display: block;
+      font-size: .65rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: rgba(255,255,255,.5);
+      margin-top: .25rem;
+    }
+
+    .countdown-event {
+      font-size: .8rem;
+      color: rgba(255,255,255,.5);
+    }
+
+    /* ─── Dates strip ───────────────────────────────────────────── */
+    #dates-strip {
+      background: var(--navy);
+      color: var(--white);
+      padding: 1.5rem 0;
+    }
+
+    .dates-strip-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+      divide: 1px solid rgba(255,255,255,.1);
+    }
+
+    .date-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: .75rem 2rem;
+      border-right: 1px solid rgba(255,255,255,.1);
+      text-align: center;
+    }
+
+    .date-item:last-child { border-right: none; }
+
+    .date-label {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .2rem;
+    }
+
+    .date-value {
+      font-size: .95rem;
+      font-weight: 700;
+    }
+
+    /* ─── About ─────────────────────────────────────────────────── */
+    #sobre {
+      padding: 5rem 0;
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--gray);
+      margin-bottom: 1rem;
+      font-size: 1.02rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-card .num {
+      display: block;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--mid);
+      line-height: 1;
+      margin-bottom: .25rem;
+    }
+
+    .stat-card .lbl {
+      font-size: .82rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    /* ─── Topics ────────────────────────────────────────────────── */
+    #tematicas {
+      padding: 5rem 0;
+      background: var(--light);
+    }
+
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .topic-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: box-shadow .25s, transform .25s;
+    }
+
+    .topic-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+
+    .topic-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .topic-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--mid);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .35rem;
+    }
+
+    .topic-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .75rem;
+    }
+
+    .topic-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+
+    .tag {
+      font-size: .75rem;
+      font-weight: 500;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: .2rem .55rem;
+      color: var(--blue);
+    }
+
+    .topics-note {
+      margin-top: 2rem;
+      padding: 1rem 1.5rem;
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      font-size: .9rem;
+      color: #7a5c00;
+      font-weight: 500;
+    }
+
+    /* ─── Formats ───────────────────────────────────────────────── */
+    #formatos {
+      padding: 5rem 0;
+      background: var(--white);
+    }
+
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 1rem;
+    }
+
+    .format-card {
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      transition: border-color .2s, background .2s;
+      cursor: default;
+    }
+
+    .format-card:hover {
+      border-color: var(--mid);
+      background: var(--light);
+    }
+
+    .format-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--mid);
+      display: block;
+      margin-bottom: .4rem;
+    }
+
+    .format-name {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--navy);
+      display: block;
+      margin-bottom: .25rem;
+    }
+
+    .format-dur {
+      font-size: .78rem;
+      color: var(--gray);
+    }
+
+    /* ─── Submission ────────────────────────────────────────────── */
+    #envio {
+      padding: 5rem 0;
+      background: var(--light);
+    }
+
+    .submission-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .submission-steps {
+      counter-reset: steps;
+    }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--mid);
+      color: var(--white);
+      font-weight: 800;
+      font-size: .85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step:not(:last-child) .step-num::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: calc(100% + 1rem + 2rem);
+      background: var(--border);
+      z-index: 0;
+    }
+
+    .step-body h4 { font-size: .95rem; font-weight: 700; color: var(--navy); margin-bottom: .25rem; }
+    .step-body p { font-size: .88rem; color: var(--gray); }
+
+    .submit-card {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: sticky;
+      top: 80px;
+    }
+
+    .submit-card h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+    }
+
+    .required-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      font-size: .875rem;
+      color: rgba(255,255,255,.8);
+      padding: .5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .required-list li:last-child { border-bottom: none; }
+
+    .required-list li::before {
+      content: '›';
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: .05em;
+    }
+
+    .submit-email {
+      margin-top: 1.5rem;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .submit-email .label {
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      display: block;
+      margin-bottom: .4rem;
+    }
+
+    .submit-email .addr {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .submit-subject {
+      margin-top: .75rem;
+      font-size: .78rem;
+      color: rgba(255,255,255,.5);
+      text-align: center;
+    }
+
+    .submit-subject code {
+      display: block;
+      margin-top: .25rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem;
+      color: rgba(255,255,255,.75);
+      background: rgba(0,0,0,.3);
+      border-radius: 5px;
+      padding: .4rem .6rem;
+      word-break: break-all;
+    }
+
+    /* ─── Criteria ──────────────────────────────────────────────── */
+    #criterios {
+      padding: 5rem 0;
+      background: var(--white);
+    }
+
+    .criteria-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .criterion {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: box-shadow .2s;
+    }
+
+    .criterion:hover { box-shadow: var(--shadow); }
+
+    .criterion-score {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      background: var(--mid);
+      color: var(--white);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    .criterion-score small {
+      font-size: .55rem;
+      font-weight: 600;
+      opacity: .75;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .criterion h4 { font-size: .95rem; font-weight: 700; color: var(--navy); margin-bottom: .3rem; }
+    .criterion p { font-size: .875rem; color: var(--gray); }
+
+    .criteria-total {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1.25rem;
+      background: var(--navy);
+      border-radius: var(--radius);
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .criteria-total .total-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      color: var(--gold);
+    }
+
+    /* ─── Speakers ──────────────────────────────────────────────── */
+    #ponentes {
+      padding: 5rem 0;
+      background: var(--light);
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .benefit-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex;
+      gap: .75rem;
+      align-items: flex-start;
+    }
+
+    .benefit-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .benefit-card p { font-size: .875rem; color: var(--gray); }
+
+    .travel-note {
+      margin-top: 2rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--mid);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+    }
+
+    .travel-note h4 { font-size: .9rem; font-weight: 700; color: var(--navy); margin-bottom: .4rem; }
+    .travel-note p { font-size: .875rem; color: var(--gray); }
+
+    /* ─── Contact ───────────────────────────────────────────────── */
+    #contacto {
+      padding: 5rem 0;
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    #contacto .section-tag { background: rgba(255,255,255,.1); color: var(--gold); border-color: rgba(244,185,66,.3); }
+    #contacto .section-title { color: var(--white); }
+    #contacto .section-lead { color: rgba(255,255,255,.65); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+    }
+
+    .contact-card h3 {
+      font-size: .85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: .75rem;
+    }
+
+    .contact-detail svg { color: var(--gold); flex-shrink: 0; }
+
+    .contact-detail .val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .9rem;
+    }
+
+    .contact-detail .val a { color: rgba(255,255,255,.85); }
+    .contact-detail .val a:hover { color: var(--gold); }
+
+    /* ─── Footer ────────────────────────────────────────────────── */
+    footer {
+      background: #08112a;
+      color: rgba(255,255,255,.4);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: .82rem;
+    }
+
+    footer a { color: rgba(255,255,255,.6); }
+    footer a:hover { color: var(--gold); }
+
+    /* ─── Mobile menu overlay ───────────────────────────────────── */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      gap: .25rem;
+      padding: 1rem 1.5rem 1.5rem;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+    }
+
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--text);
+      padding: .65rem .75rem;
+      border-radius: 8px;
+    }
+    .mobile-nav a:hover { background: var(--light); }
+    .mobile-nav .nav-cta { background: var(--accent) !important; color: var(--white) !important; text-align: center; margin-top: .5rem; }
+
+    /* ─── Responsive ────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-countdown { min-width: unset; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .submission-grid { grid-template-columns: 1fr; }
+      .submit-card { position: static; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-meta { flex-direction: column; gap: .6rem; }
+      .date-item { padding: .75rem 1rem; }
+      .dates-strip-inner { flex-direction: column; align-items: stretch; }
+      .date-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); text-align: left; flex-direction: row; align-items: center; justify-content: space-between; }
+      .date-item:last-child { border-bottom: none; }
+      .formats-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navbar ─────────────────────────────────────────────────── -->
+<header>
+  <nav id="navbar">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-brand">
+        <span>JRAL&nbsp;2026</span>
+        <span class="callsign">EA1RCL</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#tematicas">Temáticas</a></li>
+        <li><a href="#formatos">Formatos</a></li>
+        <li><a href="#envio">Envío</a></li>
+        <li><a href="#criterios">Criterios</a></li>
+        <li><a href="#ponentes">Ponentes</a></li>
+        <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="#sobre">Sobre el evento</a>
+      <a href="#tematicas">Temáticas</a>
+      <a href="#formatos">Formatos</a>
+      <a href="#envio">Envío de propuestas</a>
+      <a href="#criterios">Criterios de selección</a>
+      <a href="#ponentes">Ponentes</a>
+      <a href="#contacto" class="nav-cta">Contacto</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ─── Hero ──────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="container hero-inner">
+    <div>
+      <div class="hero-badge">#JRAL2026 &nbsp;·&nbsp; Convocatoria abierta</div>
+      <h1 class="hero-title">
+        I Jornadas de Radio Amateur<br>
+        <span>de Asturias</span> en Lugones
+      </h1>
+      <p class="hero-sub">Innovación, comunidad y radio del futuro. Un espacio de intercambio técnico abierto a radioaficionados, makers, experimentadores y entusiastas de las telecomunicaciones.</p>
+      <div class="hero-meta">
+        <div class="hero-pill">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          29 de Agosto de 2026
+        </div>
+        <div class="hero-pill">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          10:00 – 14:00 h
+        </div>
+        <div class="hero-pill">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Lugones, Asturias
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="#envio" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Enviar propuesta
+        </a>
+        <a href="#sobre" class="btn btn-outline">
+          Más información
+        </a>
+      </div>
+    </div>
+    <div class="hero-countdown">
+      <p class="countdown-label">Cuenta atrás · Evento</p>
+      <div class="countdown-grid">
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-days">--</span>
+          <span>días</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-hours">--</span>
+          <span>horas</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-mins">--</span>
+          <span>min</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-secs">--</span>
+          <span>seg</span>
+        </div>
+      </div>
+      <p class="countdown-event">29 Ago 2026 · 10:00 h peninsular</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Dates strip ────────────────────────────────────────────── -->
+<div id="dates-strip">
+  <div class="container">
+    <div class="dates-strip-inner">
+      <div class="date-item">
+        <span class="date-label">Apertura</span>
+        <span class="date-value">1 Mayo 2026</span>
+      </div>
+      <div class="date-item">
+        <span class="date-label">Cierre propuestas</span>
+        <span class="date-value">30 Mayo 2026</span>
+      </div>
+      <div class="date-item">
+        <span class="date-label">Confirmación</span>
+        <span class="date-value">4 Junio 2026</span>
+      </div>
+      <div class="date-item">
+        <span class="date-label">Evento</span>
+        <span class="date-value">29 Agosto 2026</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Sobre el evento ────────────────────────────────────────── -->
+<section id="sobre">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="section-tag">Sobre el evento</span>
+        <h2 class="section-title">Un punto de encuentro para la comunidad radio</h2>
+        <p>Las I Jornadas de Radio Amateur de Asturias nacen con el objetivo de crear un espacio de intercambio de conocimiento, innovación y comunidad en torno al presente y futuro de las comunicaciones por radio.</p>
+        <p>Prestamos especial atención a la evolución tecnológica del sector y a las nuevas formas de comunicación: desde la radio clásica hasta las redes digitales mesh, SDR, LoRa y más allá.</p>
+        <p>Invitamos a radioaficionados, experimentadores, asociaciones, técnicos, makers, profesores, estudiantes, profesionales y entusiastas de las telecomunicaciones a presentar trabajos, experiencias o proyectos.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <span class="num">4h</span>
+          <span class="lbl">de programa técnico</span>
+        </div>
+        <div class="stat-card">
+          <span class="num">5</span>
+          <span class="lbl">formatos de participación</span>
+        </div>
+        <div class="stat-card">
+          <span class="num">6</span>
+          <span class="lbl">áreas temáticas</span>
+        </div>
+        <div class="stat-card">
+          <span class="num">10</span>
+          <span class="lbl">puntos máx. evaluación</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Temáticas ──────────────────────────────────────────────── -->
+<section id="tematicas">
+  <div class="container">
+    <span class="section-tag">Temáticas</span>
+    <h2 class="section-title">Áreas de interés</h2>
+    <p class="section-lead">Se aceptarán propuestas sobre tecnologías emergentes, innovación aplicada y desarrollos técnicos vinculados al uso de la radio. La relación es orientativa y no excluyente.</p>
+    <div class="topics-grid">
+
+      <div class="topic-card">
+        <span class="topic-icon">📡</span>
+        <div class="topic-num">01</div>
+        <h3>Redes y comunicaciones digitales</h3>
+        <div class="topic-tags">
+          <span class="tag">LoRa / LPWAN</span>
+          <span class="tag">Meshtastic</span>
+          <span class="tag">MeshCore</span>
+          <span class="tag">APRS</span>
+          <span class="tag">Gateways RF↔Internet</span>
+          <span class="tag">Redes de emergencia</span>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <span class="topic-icon">💻</span>
+        <div class="topic-num">02</div>
+        <h3>SDR y señales débiles</h3>
+        <div class="topic-tags">
+          <span class="tag">Software Defined Radio</span>
+          <span class="tag">DSP</span>
+          <span class="tag">Señales débiles</span>
+          <span class="tag">Satélites</span>
+          <span class="tag">Rx/Tx experimentales</span>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <span class="topic-icon">🏗️</span>
+        <div class="topic-num">03</div>
+        <h3>Infraestructura y emergencias</h3>
+        <div class="topic-tags">
+          <span class="tag">Automatización</span>
+          <span class="tag">Monitorización remota</span>
+          <span class="tag">Redes de malla</span>
+          <span class="tag">Cloud / APIs</span>
+          <span class="tag">Logging avanzado</span>
+          <span class="tag">Ciberseguridad</span>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <span class="topic-icon">📶</span>
+        <div class="topic-num">04</div>
+        <h3>Antenas y RF experimental</h3>
+        <div class="topic-tags">
+          <span class="tag">Diseño de antenas</span>
+          <span class="tag">Simulación</span>
+          <span class="tag">Portables</span>
+          <span class="tag">Baluns / Ununs</span>
+          <span class="tag">Medición e instrumentación</span>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <span class="topic-icon">🔧</span>
+        <div class="topic-num">05</div>
+        <h3>Makers, hardware y desarrollo</h3>
+        <div class="topic-tags">
+          <span class="tag">Arduino / ESP32</span>
+          <span class="tag">Raspberry Pi</span>
+          <span class="tag">Telemetría</span>
+          <span class="tag">PCB</span>
+          <span class="tag">Impresión 3D</span>
+          <span class="tag">Sensores remotos</span>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <span class="topic-icon">🤝</span>
+        <div class="topic-num">06</div>
+        <h3>Divulgación y comunidad</h3>
+        <div class="topic-tags">
+          <span class="tag">Formación técnica</span>
+          <span class="tag">Nuevas generaciones</span>
+          <span class="tag">Proyectos educativos</span>
+          <span class="tag">Inclusión digital</span>
+          <span class="tag">Uso humanitario</span>
+        </div>
+      </div>
+
+    </div>
+    <p class="topics-note">
+      ⚠️ La relación de temáticas es orientativa y no excluyente. Si tu propuesta encaja en el espíritu del evento, envíala.
+    </p>
+  </div>
+</section>
+
+<!-- ─── Formatos ───────────────────────────────────────────────── -->
+<section id="formatos">
+  <div class="container">
+    <span class="section-tag">Formatos</span>
+    <h2 class="section-title">¿Cómo quieres participar?</h2>
+    <p class="section-lead">Las sesiones se desarrollarán en formato presencial. Excepcionalmente, la organización podrá autorizar participaciones en modalidad remota o híbrida.</p>
+    <div class="formats-grid">
+      <div class="format-card">
+        <span class="format-code">PT</span>
+        <span class="format-name">Ponencia técnica</span>
+        <span class="format-dur">50 min</span>
+      </div>
+      <div class="format-card">
+        <span class="format-code">LT</span>
+        <span class="format-name">Lightning talk</span>
+        <span class="format-dur">10 min</span>
+      </div>
+      <div class="format-card">
+        <span class="format-code">TP</span>
+        <span class="format-name">Taller práctico</span>
+        <span class="format-dur">50 min</span>
+      </div>
+      <div class="format-card">
+        <span class="format-code">DV</span>
+        <span class="format-name">Demostración en vivo</span>
+        <span class="format-dur">25 min</span>
+      </div>
+      <div class="format-card">
+        <span class="format-code">MR</span>
+        <span class="format-name">Mesa redonda</span>
+        <span class="format-dur">50 min</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Envío de propuestas ────────────────────────────────────── -->
+<section id="envio">
+  <div class="container">
+    <span class="section-tag">Convocatoria</span>
+    <h2 class="section-title">Envío de propuestas</h2>
+    <p class="section-lead">El proceso es sencillo: completa tu propuesta con la información necesaria y envíala por correo antes del 30 de mayo de 2026.</p>
+    <div class="submission-grid">
+      <div class="submission-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Prepara tu propuesta</h4>
+            <p>Redacta un resumen claro de tu sesión (200–500 palabras), indicando formato, nivel y necesidades técnicas.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Adjunta la documentación</h4>
+            <p>Envía la propuesta en PDF, documento de texto o correo estructurado. La información se usará únicamente para la evaluación.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Envía el correo</h4>
+            <p>Remite tu propuesta a <strong>vt@radioclublugones.es</strong> con el asunto indicado antes del 30 de mayo a las 23:59 h (hora peninsular española).</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>Espera la resolución</h4>
+            <p>El comité notificará las propuestas seleccionadas antes del 4 de junio. Si eres seleccionado/a, deberás entregar el material definitivo en el plazo indicado.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="submit-card">
+        <h3>Información requerida</h3>
+        <ul class="required-list">
+          <li>Título de la sesión</li>
+          <li>Nombre e indicativo de llamada (si aplica)</li>
+          <li>Breve biografía o trayectoria</li>
+          <li>Resumen (200–500 palabras)</li>
+          <li>Formato solicitado (PT, LT, TP, DV o MR)</li>
+          <li>Necesidades técnicas o logísticas</li>
+          <li>Nivel: iniciación / intermedio / avanzado</li>
+          <li>Idioma de la sesión</li>
+          <li>Lugar de origen (ciudad y país)</li>
+        </ul>
+        <div class="submit-email">
+          <span class="label">Enviar a</span>
+          <span class="addr">vt@radioclublugones.es</span>
+        </div>
+        <p class="submit-subject">
+          Asunto recomendado:
+          <code>JRAL 2026 – Título de la sesión – Nombre del ponente</code>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Criterios de selección ────────────────────────────────── -->
+<section id="criterios">
+  <div class="container">
+    <span class="section-tag">Evaluación</span>
+    <h2 class="section-title">Criterios de selección</h2>
+    <p class="section-lead">El comité evaluará cada candidatura sobre 10 puntos, garantizando una selección equilibrada, técnica y de interés general.</p>
+    <div class="criteria-list">
+      <div class="criterion">
+        <div class="criterion-score">2<small>pts</small></div>
+        <div>
+          <h4>Interés para la comunidad</h4>
+          <p>Grado en que la propuesta responde a necesidades reales e inquietudes actuales. Mayor valoración para sesiones capaces de atraer perfiles diversos.</p>
+        </div>
+      </div>
+      <div class="criterion">
+        <div class="criterion-score">2<small>pts</small></div>
+        <div>
+          <h4>Calidad técnica</h4>
+          <p>Rigor del contenido, solidez técnica, correcta fundamentación y nivel de conocimiento demostrado. Se valora precisión y actualidad.</p>
+        </div>
+      </div>
+      <div class="criterion">
+        <div class="criterion-score">2<small>pts</small></div>
+        <div>
+          <h4>Originalidad</h4>
+          <p>Enfoques novedosos, desarrollos propios, experiencias innovadoras o formas creativas de aplicar tecnologías existentes.</p>
+        </div>
+      </div>
+      <div class="criterion">
+        <div class="criterion-score">2<small>pts</small></div>
+        <div>
+          <h4>Aplicación práctica</h4>
+          <p>Utilidad real, capacidad de réplica, existencia de demostraciones, casos de uso, guías de implementación o resultados tangibles.</p>
+        </div>
+      </div>
+      <div class="criterion">
+        <div class="criterion-score">1<small>pts</small></div>
+        <div>
+          <h4>Capacidad divulgativa y licencia</h4>
+          <p>Claridad expositiva adaptada al público. Se valorará positivamente la disponibilidad de materiales bajo licencias abiertas (Creative Commons).</p>
+        </div>
+      </div>
+      <div class="criterion">
+        <div class="criterion-score">1<small>pts</small></div>
+        <div>
+          <h4>Diversidad temática</h4>
+          <p>El comité podrá priorizar propuestas que complementen otras ya seleccionadas o aporten perspectivas y tecnologías poco representadas.</p>
+        </div>
+      </div>
+    </div>
+    <div class="criteria-total">
+      <span class="total-num">10</span>
+      <span>puntos máximos de evaluación</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Ponentes ───────────────────────────────────────────────── -->
+<section id="ponentes">
+  <div class="container">
+    <span class="section-tag">Ponentes</span>
+    <h2 class="section-title">Reconocimiento y beneficios</h2>
+    <p class="section-lead">Valoramos especialmente la participación de quienes contribuyen compartiendo conocimiento, experiencia e innovación con la comunidad.</p>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <span class="benefit-icon">📢</span>
+        <p>Difusión de tu participación a través de los canales oficiales del evento y la organización.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">📋</span>
+        <p>Inclusión en el programa oficial como ponente invitado/a.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">🎓</span>
+        <p>Certificado o diploma acreditativo de participación, si así se solicita.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">🎥</span>
+        <p>Publicación posterior de la grabación y/o materiales aportados, con tu autorización.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">🌐</span>
+        <p>Visibilidad ante la comunidad técnica, radioaficionada, educativa y asociativa asistente.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">🤝</span>
+        <p>Networking y colaboración con otras personas participantes y entidades presentes.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">⭐</span>
+        <p>Prioridad en futuras ediciones o actividades organizadas por la entidad.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">🍽️</span>
+        <p>Participación en la comida de confraternización posterior al evento, a cargo de la organización.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">🎁</span>
+        <p>Obsequio conmemorativo o detalle institucional, según disponibilidad de cada edición.</p>
+      </div>
+    </div>
+    <div class="travel-note">
+      <h4>Ayuda de desplazamiento</h4>
+      <p>Los ponentes residentes fuera del Principado de Asturias podrán optar a una ayuda simbólica de desplazamiento (0,28 €/km orientativo), materializable en combustible, billetes de tren, autobús, avión o una noche de hotel, sujeto a disponibilidad presupuestaria y validación previa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Contacto ───────────────────────────────────────────────── -->
+<section id="contacto">
+  <div class="container">
+    <span class="section-tag">Contacto</span>
+    <h2 class="section-title">¿Tienes algo que compartir?</h2>
+    <p class="section-lead">Si estás construyendo algo interesante, investigando, aprendiendo o simplemente deseas compartir experiencia, queremos escucharte.</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Organización</h3>
+        <div class="contact-detail">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <div>
+            <div class="val">Radioclub Lugones – Vocalía Técnica</div>
+            <div style="font-size:.8rem;color:rgba(255,255,255,.45);margin-top:.15rem">Jonathan González, EA1HET · Vocal Técnico</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div class="val"><a href="mailto:vt@radioclublugones.es">vt@radioclublugones.es</a></div>
+        </div>
+        <div class="contact-detail">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <div class="val"><a href="https://2026.radioclublugones.es" target="_blank" rel="noopener">2026.radioclublugones.es</a></div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>Fechas importantes</h3>
+        <div style="display:flex;flex-direction:column;gap:.75rem">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.08)">
+            <span style="font-size:.875rem;color:rgba(255,255,255,.6)">Apertura convocatoria</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--gold);font-weight:700">1 May 2026</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.08)">
+            <span style="font-size:.875rem;color:rgba(255,255,255,.6)">Cierre de propuestas</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--gold);font-weight:700">30 May 2026</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.08)">
+            <span style="font-size:.875rem;color:rgba(255,255,255,.6)">Confirmación seleccionadas</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--gold);font-weight:700">4 Jun 2026</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:.6rem 0">
+            <span style="font-size:.875rem;color:rgba(255,255,255,.6)">Celebración del evento</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--gold);font-weight:700">29 Ago 2026</span>
+          </div>
+        </div>
+        <a href="mailto:vt@radioclublugones.es?subject=JRAL%202026%20–%20Propuesta"
+           style="display:block;margin-top:1.5rem;text-align:center;background:var(--accent);color:#fff;font-weight:700;padding:.8rem;border-radius:9px;transition:.2s;"
+           onmouseover="this.style.background='#c62a36'" onmouseout="this.style.background='var(--accent)'">
+          Enviar propuesta por email
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Footer ─────────────────────────────────────────────────── -->
+<footer>
+  <p>
+    © 2026 Radioclub Lugones · EA1RCL · Lugones, Asturias, España
+    &nbsp;·&nbsp;
+    <a href="mailto:vt@radioclublugones.es">vt@radioclublugones.es</a>
+    &nbsp;·&nbsp;
+    <a href="https://2026.radioclublugones.es" target="_blank" rel="noopener">#JRAL2026</a>
+  </p>
+  <p style="margin-top:.4rem">Materiales bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> salvo indicación expresa</p>
+</footer>
+
+<!-- ─── Scripts ────────────────────────────────────────────────── -->
+<script>
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  hamburger.addEventListener('click', () => {
+    const open = mobileNav.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+  });
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+  });
+
+  // Navbar shadow on scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+
+  // Active nav link
+  const sections = document.querySelectorAll('section[id], div[id="dates-strip"]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => observer.observe(s));
+
+  // Countdown
+  const eventDate = new Date('2026-08-29T10:00:00+02:00');
+  function updateCountdown() {
+    const now = new Date();
+    const diff = eventDate - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '¡Hoy!';
+      ['cd-hours','cd-mins','cd-secs'].forEach(id => document.getElementById(id).textContent = '00');
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-days').textContent  = String(d);
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
